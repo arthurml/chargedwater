@@ -1,0 +1,43 @@
+; Sample mdp file for use with Martini 3 charged water model
+integrator               = md
+dt                       = 0.02
+nsteps                   = 2000000
+nstcomm                  = 100
+
+nstxout                  = 0
+nstvout                  = 0
+nstfout                  = 0
+nstlog                   = 1000
+nstenergy                = 100
+nstxout-compressed       = 1000
+compressed-x-precision   = 100
+
+cutoff-scheme            = Verlet
+nstlist                  = 20
+ns_type                  = grid
+pbc                      = xyz
+verlet-buffer-tolerance  = 0.005
+
+coulombtype              = PME 
+rcoulomb                 = 1.1
+epsilon_r                = 2.5   ; 2.5 for charged water, 15 for standard Martini 3 water
+vdw_type                 = cutoff  
+vdw-modifier             = Potential-shift-verlet
+rvdw                     = 1.1
+
+tcoupl                   = v-rescale 
+tc-grps                  = SYSTEM
+tau_t                    = 1.0   
+ref_t                    = 300 
+Pcoupl                   = parrinello-rahman
+Pcoupltype               = isotropic
+tau_p                    = 12.0   
+compressibility          = 3e-4
+ref_p                    = 1.0
+
+gen_vel                  = no
+gen_temp                 = 310
+gen_seed                 = 473529
+
+constraints              = none 
+constraint_algorithm     = Lincs
